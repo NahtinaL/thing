@@ -29,7 +29,7 @@ public class EmployeeEntity {
     @ManyToOne
     @JoinColumn(name = "officeCode")
     @Column(length = 10, nullable = false)
-    private OfficesEntity officeCode;
+    private OfficeEntity officeCode;
 
     @OneToMany(mappedBy = "employees")
     @Column(length = 11)
