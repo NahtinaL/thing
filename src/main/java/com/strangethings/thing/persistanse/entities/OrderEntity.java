@@ -1,9 +1,7 @@
 package com.strangethings.thing.persistanse.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Collection;
 import java.util.Date;
 
 @Entity
@@ -11,6 +9,7 @@ import java.util.Date;
 public class OrderEntity {
 
     @Id
+    @GeneratedValue
     @Column(length = 11, nullable = false)
     private Integer orderNumber;
 
@@ -29,11 +28,12 @@ public class OrderEntity {
     @Column
     private String comments;
 
+    @ManyToOne
     @Column(nullable = false)
-    private Integer customerNumber;
+    @JoinColumn(name = "customerNumber")
+    private CustomerEntity customerNumber;
 }
 
-//        `customerNumber` int(11) NOT NULL,
 //        PRIMARY KEY (`orderNumber`),
 //        KEY `customerNumber` (`customerNumber`),
 //        CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customerNumber`) REFERENCES `customers` (`customerNumber`)

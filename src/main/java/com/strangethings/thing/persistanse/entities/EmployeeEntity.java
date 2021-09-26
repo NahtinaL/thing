@@ -11,6 +11,7 @@ import java.util.Collection;
 public class EmployeeEntity {
 
     @Id
+    @GeneratedValue
     @Column(length = 11)
     private Integer employeeNumber;
 
@@ -29,11 +30,12 @@ public class EmployeeEntity {
     @ManyToOne
     @JoinColumn(name = "officeCode")
     @Column(length = 10, nullable = false)
-    private OfficeEntity officeCode;
+    private OfficeEntiy officeCode;
 
-    @OneToMany(mappedBy = "employees")
+    @ManyToOne
+    @JoinColumn(name = "employeeNumber")
     @Column(length = 11)
-    private Collection<EmployeeEntity> reportsTo;
+    private EmployeeEntity reportsTo;
 
     @Column(length = 50, nullable = false)
     private String jobTitle;

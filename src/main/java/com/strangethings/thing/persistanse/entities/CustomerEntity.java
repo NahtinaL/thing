@@ -1,11 +1,7 @@
 package com.strangethings.thing.persistanse.entities;
 
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.ColumnDefault;
-
 import javax.persistence.*;
-import java.math.BigDecimal;
-import java.util.Collection;
 
 @Entity
 @NoArgsConstructor
@@ -14,6 +10,7 @@ public class CustomerEntity {
 
     @Id
     @Column(length = 11)
+    @GeneratedValue
     private Integer customerNumber;
 
     @Column(nullable = false, length = 50)
@@ -46,9 +43,10 @@ public class CustomerEntity {
     @Column(nullable = false, length = 50)
     private String country;
 
-    @OneToMany(mappedBy = "employees")
+    @ManyToOne
+    @JoinColumn(name = "employeeNumber")
     @Column(length = 11)
-    private Collection<EmployeeEntity> salesRepEmployeeNumber;
+    private EmployeeEntity salesRepEmployeeNumber;
 
     @Column
     private Double creditLimit;
